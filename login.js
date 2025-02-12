@@ -31,15 +31,15 @@ const handlerSubmit = (event) => {
   inputName.value = null;
 }
 
-  // logoutBtn.addEventListener('click',(event)=>{
-  //   event.preventDefault();
-  //   hello.classList.add('hidden');
-  //   inputName.classList.remove('hidden');
-  //   loginBtn.classList.remove('hidden');
-  //   logoutBtn.classList.add('hidden');
-  //   TODO.classList.add('hidden');
-  //   inputName.value = null;
-  // });
+  logoutBtn.addEventListener('click',(event)=>{
+    event.preventDefault();
+    hello.classList.add('hidden');
+    inputName.classList.remove('hidden');
+    loginBtn.classList.remove('hidden');
+    logoutBtn.classList.add('hidden');
+    TODO.classList.add('hidden');
+    inputName.value = null;
+  });
 
 const init = () => {
   let loginName = loadLoginName();
