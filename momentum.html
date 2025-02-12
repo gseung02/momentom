@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>개인작업</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./momentum.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <header>
+        <div class="h-left">
+          <div class="time">
+            <p class="year"></p>
+            <p class="day"></p>
+          </div>
+          <div class="weather">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span class="tem"></span>
+            <p class="loca"></p>
+          </div>
+        </div>
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search" />
+        </div>
+      </header>
+      <main>
+        <h1 class="clock">시간</h1>
+        <form id="login">
+          <input type="text" placeholder="Name" />
+          <!-- <input type="password" placeholder="Password" autocomplete="new-password"/> -->
+        </form>
+        <div class="hello hidden">
+          <h2>반갑습니다.</h2>
+          <p>TODAY</p>
+          <ul class="todo-list"></ul>
+        </div>
+        <div class="quote">
+          <p>"명언"</p>
+          <p>-지은이-</p>
+        </div>
+      </main>
+      <footer>
+        <a href="#" class="set">
+          <i class="fa-solid fa-gear"></i>
+          <p class="loginbtn">로그인</p>
+          <p class="logoutbtn hidden">로그아웃</p>
+        </a>
+        <div class="todo hidden">
+          <div class="t-box hidden">
+            <div class="tb-head">
+              <span>My Tasks</span>
+              <a href="#">
+                <i class="fa-solid fa-trash-can"></i>
+              </a>
+            </div>
+            <ul class="f-todolist"></ul>
+            <form id="todoForm">
+              <input type="text" placeholder="할 일을 추가하세요." required />
+            </form>
+          </div>
+          <a href="#">Todo</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script src="./bg.js"></script>
+  <script src="./today.js"></script>
+  <script src="./clock.js"></script>
+  <script src="./login.js"></script>
+  <script src="./quote.js"></script>
+  <script src="./todo.js"></script>
+  <script src="./weather.js"></script>
+</html>
