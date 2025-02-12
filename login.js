@@ -7,62 +7,70 @@ const hiName = document.querySelector('.hello>h2');
 const TODO = document.querySelector('.todo');
 const LOGIN_KEY = 'loginname';
 
+// UI 상태 관리 함수
+const updateUIState = (isLoggedIn, username = '') => {
+  hello.classList.toggle('hidden', !isLoggedIn);
+  inputName.classList.toggle('hidden', isLoggedIn);
+  loginBtn.classList.toggle('hidden', isLoggedIn);
+  logoutBtn.classList.toggle('hidden', !isLoggedIn);
+  TODO.classList.toggle('hidden', !isLoggedIn);
+  
+  if (isLoggedIn) {
+    hiName.textContent = `반갑습니다. ${username}님`;
+  } else {
+    hiName.textContent = '';
+    inputName.value = '';
+  }
+};
+
+// 로컬 스토리지 관리 함수
 const saveLoginName = (strInput) => {
-  localStorage.setItem(LOGIN_KEY,strInput);
-}
+  localStorage.setItem(LOGIN_KEY, strInput);
+};
 
 const loadLoginName = () => {
   return localStorage.getItem(LOGIN_KEY);
-}
+};
 
-  const printLoginName = (strName) => {
-    hiName.textContent = `반갑습니다. ${strName}님`;
-    hello.classList.remove('hidden');
-    inputName.classList.add('hidden');
-    loginBtn.classList.add('hidden');
-    logoutBtn.classList.remove('hidden');
-    TODO.classList.remove('hidden');
-  }
+// 이벤트 핸들러
+const handleLogin = (username) => {
+  saveLoginName(username);
+  updateUIState(true, username);
+};
+
+const handleLogout = () => {
+  localStorage.removeItem(LOGIN_KEY);
+  updateUIState(false);
+};
 
 const handlerSubmit = (event) => {
   event.preventDefault();
-  printLoginName(inputName.value);
-  saveLoginName(inputName.value);
-  inputName.value = null;
-}
+  handleLogin(inputName.value);
+};
 
-  logoutBtn.addEventListener('click',(event)=>{
+// 이벤트 리스너 설정
+const init = () => {
+  const loginName = loadLoginName();
+  
+  if (loginName) {
+    updateUIState(true, loginName);
+  } else {
+    updateUIState(false);
+    login.addEventListener('submit', handlerSubmit);
+  }
+
+  loginBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    hello.classList.add('hidden');
-    inputName.classList.remove('hidden');
-    loginBtn.classList.remove('hidden');
-    logoutBtn.classList.add('hidden');
-    TODO.classList.add('hidden');
-    inputName.value = null;
+    const username = inputName.value;
+    if (username) {
+      handleLogin(username);
+    }
   });
 
-const init = () => {
-  let loginName = loadLoginName();
-  if(loginName){
-    printLoginName(loginName);
-  }else{
-    login.addEventListener('submit',handlerSubmit);
-  }
-  loginBtn.addEventListener('click',()=>{
-    localStorage.removeItem(LOGIN_KEY);
-    hello.classList.add('hidden');
-    inputName.classList.remove('hidden');
-    loginBtn.classList.remove('hidden');
-    logoutBtn.classList.add('hidden');
-    TODO.classList.add('hidden');
-
-    // event.preventDefault(); //초기화
-    // hiName.textContent = `반갑습니다. ${inputName.value}님`;
-    // hello.classList.remove('hidden');
-    // inputName.classList.add('hidden');
-    // loginBtn.classList.add('hidden');
-    // logoutBtn.classList.remove('hidden');
-    // TODO.classList.remove('hidden');
+  logoutBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    handleLogout();
   });
 };
+
 window.onload = init;
