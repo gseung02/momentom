@@ -121,6 +121,7 @@ h2{
   align-items: center;
   text-align: center;
   font-size: 18px;
+  margin-top: 10px;
 }
 .todo-list>li>input{
   cursor: pointer;
